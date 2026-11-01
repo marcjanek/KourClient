@@ -1,0 +1,100 @@
+@font-face {
+    font-family: 'Nexa';
+    src: url(../assets/font/Nexa-Heavy.ttf);
+}
+
+@keyframes background-pos {
+    0%, 50%, 100% { background-position: 50% 0%; }
+    25% { background-position: 0% 0%; }
+    75% { background-position: 100% 0%; }
+}
+
+@keyframes marquee {
+    from { background-position: 0 0; }
+    to { background-position: 50px 0; }
+}
+
+:root {
+    --accent: #e9892e;
+    --glass: #ffffff14;
+}
+
+* { box-sizing: border-box; font-family: 'Nexa', system-ui, sans-serif; }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    background: linear-gradient(#000b, #000d), url('https://kour.io/TemplateData/background.webp') #111;
+    background-size: cover;
+    animation: background-pos 300s linear infinite;
+    user-select: none;
+    overflow: hidden;
+}
+
+.navbar {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    background: #0006;
+    -webkit-app-region: drag;
+}
+.navbar .brand { margin-right: auto; padding-left: 14px; color: var(--accent); letter-spacing: 2px; font-size: 14px; }
+.navbar span:not(.brand) {
+    width: 44px; height: 40px; line-height: 40px; text-align: center;
+    font: bold 26px monospace; cursor: pointer;
+    -webkit-app-region: no-drag;
+    transition: .3s background-color, .3s color;
+}
+.navbar span:not(.brand):hover { color: var(--accent); background: #fff2; }
+.navbar #close { color: var(--accent); }
+.navbar #close:hover { color: #fff; background: #e9892e55; }
+
+.content { flex: 1; display: flex; flex-direction: column; padding: 16px 20px 20px; min-height: 0; }
+h1 { margin: 0; }
+h2 { margin: 0 0 10px; font-size: 15px; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
+.muted { color: #fff9; font-size: 12px; }
+.small { font-size: 12px; margin-top: auto; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.panels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+.panel { background: var(--glass); border-radius: 6px; padding: 14px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.toggle input { accent-color: var(--accent); width: 16px; height: 16px; }
+.note { font-size: 12px; color: var(--accent); display: flex; gap: 8px; align-items: center; }
+.note[hidden] { display: none; }
+
+.hotkeys { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+kbd { display: inline-block; min-width: 36px; text-align: center; padding: 2px 6px; border-radius: 4px; background: #0008; border: 1px solid #fff3; font-family: monospace; color: var(--accent); }
+
+button {
+    border: none; border-radius: 5px; cursor: pointer;
+    background: var(--glass); color: var(--accent);
+    padding: 4px 10px; transition: .3s color, .3s background;
+}
+button:not(:disabled):hover { color: #fff; background: var(--accent); }
+button:disabled { opacity: .5; cursor: not-allowed; }
+
+.float-bottom { margin-top: auto; }
+.updateCont { padding: 10px; margin-bottom: 10px; border-radius: 5px; background: var(--glass); font-size: 13px; color: #fffc; }
+.updateRow { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.updateRow button[hidden] { display: none; }
+.updateProgCont { height: 5px; margin-top: 6px; border-radius: 5px; background: #0005; overflow: hidden; }
+#updateProg { position: relative; overflow: hidden; height: 100%; width: 0; background: var(--accent); transition: width .3s; }
+#updateProg.error { background: #a33; }
+#updateProg.inProg::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, #c205 0 50%, transparent 50% 100%);
+    background-size: 50px; transform: skew(-30deg);
+    animation: marquee 2s linear infinite;
+}
+
+.launchCont { display: flex; gap: 10px; }
+.launchCont select, .launchCont button { font-size: 24px; padding: 10px 20px; border: none; border-radius: 5px; background: var(--glass); color: #fff; outline: none; }
+.launchCont select { flex: 1; cursor: pointer; }
+.launchCont select option { background: #222; color: var(--accent); font-size: 18px; }
+.launchCont button { color: var(--accent); min-width: 140px; }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' https://kour.io; style-src 'self'; font-src 'self'; script-src 'self'"
+    />
+    <title>Kour.io Client</title>
+    <link rel="stylesheet" href="launcher.css" />
+    <script src="../dist/renderer/launcher.js" defer></script>
+</head>
+<body>
+    <div class="navbar">
+        <span class="brand">KOUR.IO</span>
+        <span id="minimize" title="Minimize">–</span>
+        <span id="close" title="Close">×</span>
+    </div>
+
+    <main class="content">
+        <header>
+            <h1 id="title">Kour.io Client</h1>
+            <div id="version" class="muted"></div>
+        </header>
+
+        <div class="panels">
+            <section class="panel">
+                <h2>Settings</h2>
+                <label class="toggle"><input type="checkbox" data-setting="uncapFps" /> Uncapped FPS <span class="muted">(restart)</span></label>
+                <label class="toggle"><input type="checkbox" data-setting="discordRpc" /> Discord Rich Presence</label>
+                <label class="toggle"><input type="checkbox" data-setting="backToLauncher" /> Return to launcher on game close</label>
+                <label class="toggle"><input type="checkbox" data-setting="skipLauncher" /> Skip launcher on start</label>
+                <div id="restartNote" class="note" hidden>
+                    Restart required to apply. <button id="restart">Restart now</button>
+                </div>
+            </section>
+
+            <section class="panel">
+                <h2>Hotkeys</h2>
+                <ul id="hotkeys" class="hotkeys"></ul>
+                <p class="muted small">
+                    <a href="https://discord.gg/kour">Kour.io Discord</a> ·
+                    <a href="https://github.com/marcjanek/KourClient">Source</a>
+                </p>
+            </section>
+        </div>
+
+        <div class="float-bottom">
+            <div class="updateCont">
+                <div class="updateRow">
+                    <div id="updateText">Checking for updates…</div>
+                    <button id="updateInstall" hidden>Restart &amp; update</button>
+                </div>
+                <div class="updateProgCont"><div id="updateProg" class="inProg"></div></div>
+            </div>
+            <div class="launchCont">
+                <select id="betaSelect" aria-label="Channel"><option>Loading…</option></select>
+                <button id="launch" disabled>Play</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
